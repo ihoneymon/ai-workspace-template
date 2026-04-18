@@ -1,0 +1,54 @@
+# 배포 설정
+# 프로젝트별 배포 브랜치 매핑. 새 프로젝트 추가 시 이 파일만 수정한다.
+#
+# 사용법:
+#   /deploy <project> <env> [source-branch]
+#   /deploy be dev feature/my-branch
+#
+# 아래 예시를 참고하여 팀 프로젝트에 맞게 수정하세요.
+
+projects:
+  # 예시 1: 단일 서비스 백엔드 API
+  # my-api:
+  #   display_name: My API 서버
+  #   repo_path: projects/my-api/main
+  #   aliases: [api, backend]
+  #   environments:
+  #     dev:
+  #       branch: develop
+  #     qa:
+  #       branch: "qa/{name}"
+  #     release:
+  #       branch: "release/{version}"
+  #       version_format: "CalVer (YYYY.MM.DD)"
+  #       version_example: "2026.04.01"
+
+  # 예시 2: 다중 서비스 (ext/int 독립 배포)
+  # my-backend:
+  #   display_name: My Backend
+  #   repo_path: projects/my-backend/main
+  #   aliases: [be]
+  #   services:
+  #     ext:
+  #       description: "외부 API"
+  #       prefix: ext
+  #     int:
+  #       description: "내부 API"
+  #       prefix: int
+  #   service_groups:
+  #     all:
+  #       description: "ext + int 동시 배포"
+  #       includes: [ext, int]
+  #       default: true
+  #   environments:
+  #     dev:
+  #       shared_branch: develop
+  #       per_service_branch: "{prefix}/develop"
+  #     qa:
+  #       shared_branch: "qa/{name}"
+  #       per_service_branch: "{prefix}/qa/{name}"
+  #     release:
+  #       shared_branch: "release/{version}"
+  #       per_service_branch: "{prefix}/release/{version}"
+  #       version_format: "CalVer (YYYY.MM.DD)"
+  #       version_example: "2026.04.01"

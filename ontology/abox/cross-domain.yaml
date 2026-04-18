@@ -1,0 +1,12 @@
+# 도메인 간 관계
+# 여러 도메인에 걸친 entity 간 관계를 여기에 정의합니다.
+# from/to 형식: "{도메인id}/{entity-id}"
+#
+# 예시:
+# relations:
+#   - from: domain-a/entity-x
+#     to: domain-b/entity-y
+#     type: depends_on
+#     note: entity-x가 entity-y 데이터를 참조
+
+relations: []

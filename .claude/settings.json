@@ -1,0 +1,89 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "Bash(python3 *)",
+      "Bash(pip3 *)",
+      "Bash(brew *)",
+      "Bash(claude *)",
+      "Bash(unzip *)",
+
+      "Bash(agent-browser *)",
+      "Bash(npx agent-browser *)",
+
+      "Bash(git *)",
+      "Bash(git -C *)",
+      "Bash(GH_HOST=* *)",
+      "Bash(test *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(ls *)",
+      "Bash(pwd *)",
+      "Bash(wc *)",
+      "Bash(basename *)",
+      "Bash(dirname *)",
+      "Bash(which *)",
+      "Bash(find *)",
+
+      "Skill(worktree)",
+      "Skill(commit)",
+      "Skill(pull-request)",
+      "Skill(humanizer)",
+      "Skill(new-domain)",
+      "Skill(domain-audit)",
+      "Skill(domain-cleanup)",
+      "Skill(lens)",
+      "Skill(sync-projects)",
+      "Skill(dev)",
+      "Skill(agent-browser)",
+      "Skill(spec)",
+
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+
+      "Read(//private/tmp/**)"
+    ],
+    "deny": [
+      "Bash(*gh pr merge*)",
+      "Bash(*gh pr close*)",
+      "Bash(*gh issue close*)",
+      "Bash(*git push --force *)",
+      "Bash(*git push -f *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/branch-guard.mjs"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/pre-tool-use.mjs"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/permission-handler.mjs"
+          }
+        ]
+      }
+    ]
+  }
+}

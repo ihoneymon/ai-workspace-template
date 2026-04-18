@@ -1,0 +1,8 @@
+{
+  "team": "my-team",
+  "ghe_host": "github.com",
+  "projects": {
+    "required": [],
+    "optional": []
+  }
+}

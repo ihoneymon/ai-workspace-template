@@ -1,0 +1,17 @@
+# 도메인 탐색 진입점
+# 새 도메인 추가 시: /new-domain <도메인명> 스킬을 사용하거나 아래에 직접 항목을 추가하세요.
+#
+# 예시:
+# projects:
+#   - id: my-domain
+#     name: 내 도메인
+#     file: abox/my-domain.yaml
+#     summary: 도메인 핵심 기능 한 줄 요약
+#     wiki_root: wiki/내-도메인/
+#     repos:
+#       - my-api
+
+projects: []
+
+cross_domain: abox/cross-domain.yaml
+shared_infra: abox/infra.yaml

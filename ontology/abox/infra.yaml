@@ -1,0 +1,17 @@
+# 공유 인프라
+# 팀 공용 인프라 구성요소를 여기에 정의합니다.
+# 도메인별 abox 파일에서 id로 참조합니다.
+#
+# 예시:
+# entities:
+#   - id: my-mysql
+#     name: My MySQL
+#     type: infra
+#     summary: 주 데이터베이스. 모든 도메인 엔티티가 JPA로 영속화
+#
+#   - id: my-redis
+#     name: My Redis
+#     type: infra
+#     summary: 세션 및 캐시 저장소
+
+entities: []
