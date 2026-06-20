@@ -19,6 +19,7 @@ allowed-tools:
   - "Bash(mkdir *)"
   - "Bash(cp *)"
   - "Bash(mv *)"
+  - "Bash(ln *)"
   - "Bash(ls *)"
   - "Bash(test *)"
   - "Bash(find *)"
@@ -155,6 +156,25 @@ Claude Code의 파일 도구(Read/Edit/Glob/Grep)는 세션 시작 디렉토리 
    - 생성된 브랜치명을 사용자에게 표시하고 확인을 받는다. 사용자가 다른 이름을 원하면 그대로 사용한다.
 3. 브랜치 중복 체크 (중복 시: 기존 사용 / 다른 이름 / 기존 삭제 중 선택)
 4. `git -C ${GIT_ROOT} worktree add ../worktrees/<dir-name> -b <branch-name>` (`<dir-name>` = 브랜치명의 `/`→`-` 치환)
+4.5. `.claude/hooks` 심볼릭 링크 생성 (훅이 워크트리 CWD에서도 동작하도록):
+   ```bash
+   WORKTREE_CLAUDE_DIR="${WORK_DIR}/worktrees/<dir-name>/.claude"
+   mkdir -p "${WORKTREE_CLAUDE_DIR}"
+   WS_ROOT=$(python3 -c "
+   import os
+   p = os.path.abspath('${WORK_DIR}')
+   while p != '/':
+       if os.path.isfile(os.path.join(p, '.claude', 'settings.json')):
+           print(p); break
+       p = os.path.dirname(p)
+   ")
+   if [ -n "$WS_ROOT" ] && [ -d "$WS_ROOT/.claude/hooks" ]; then
+     REL=$(python3 -c "import os; print(os.path.relpath('$WS_ROOT/.claude/hooks', '${WORKTREE_CLAUDE_DIR}'))")
+     ln -s "$REL" "${WORKTREE_CLAUDE_DIR}/hooks"
+   fi
+   ```
+   워크스페이스 루트(`.claude/settings.json`이 있는 디렉토리)를 탐색하여 상대경로로 심볼릭 링크를 생성한다.
+   워크스페이스 루트에 `.claude/hooks`가 없으면 건너뛴다.
 5. 환경 파일 복사 + 빌드 도구 감지 후 의존성 설치 제안 (의존성 설치 Bash 명령에 `timeout: 300000` 설정)
 6. 포커스를 새 워크트리로 전환
 

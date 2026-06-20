@@ -61,7 +61,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/branch-guard.mjs"
+            "command": "bash -c 'd=$(pwd);while [ \"$d\" != / ];do [ -f \"$d/.claude/hooks/branch-guard.mjs\" ] && exec node \"$d/.claude/hooks/branch-guard.mjs\";d=$(dirname \"$d\");done'"
           }
         ]
       },
@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/pre-tool-use.mjs"
+            "command": "bash -c 'd=$(pwd);while [ \"$d\" != / ];do [ -f \"$d/.claude/hooks/pre-tool-use.mjs\" ] && exec node \"$d/.claude/hooks/pre-tool-use.mjs\";d=$(dirname \"$d\");done'"
           }
         ]
       }
@@ -80,7 +80,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/permission-handler.mjs"
+            "command": "bash -c 'd=$(pwd);while [ \"$d\" != / ];do [ -f \"$d/.claude/hooks/permission-handler.mjs\" ] && exec node \"$d/.claude/hooks/permission-handler.mjs\";d=$(dirname \"$d\");done'"
           }
         ]
       }
