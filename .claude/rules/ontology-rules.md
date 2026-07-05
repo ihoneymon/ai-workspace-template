@@ -8,28 +8,13 @@ ontology/
 ├── index.yaml             ← 탐색 진입점. 매 요청 시 읽음
 └── abox/                  ← A-Box: 인스턴스
     ├── infra.yaml         ← 공유 인프라 (mysql, redis 등). 도메인 공통
-    ├── work-application.yaml  ← 근무지원 도메인
+    ├── {도메인id}.yaml    ← 도메인별 A-Box (예: work-application.yaml)
     └── cross-domain.yaml  ← 도메인 간 관계
 ```
 
-## 탐색 흐름
+## 탐색 흐름 / 3계층 역할
 
-매 요청 시작 시 질문이 특정 도메인과 관련될 때:
-
-1. `ontology/index.yaml`을 읽어 전체 도메인 맵 파악
-2. 관련 도메인의 A-Box 파일(`ontology/abox/{file}`)을 읽어 개념/관계 파악
-3. 도메인 간 관계가 필요하면 `index.yaml`의 `cross_domain` 필드가 가리키는 파일 참조
-4. 비즈니스 정책/의사결정이 필요하면 entity의 `wiki_doc`으로 이동
-5. 코드가 필요하면 entity의 `repo` + `package`로 코드 탐색
-6. 새 entity/relation 작성 시에만 `ontology/tbox.yaml`로 타입/규칙 확인
-
-## 3계층 역할
-
-| 계층 | 담는 것 | 언제 참조 |
-|------|---------|----------|
-| **ontology** | What(개념), Where(코드 위치), How(관계) | 항상 먼저 |
-| **wiki** | Why(의사결정), Rule(비즈니스 정책), Flow(시나리오) | "왜?"가 필요할 때 |
-| **코드** | 실제 구현 | 수정/상세 확인할 때 |
+`CLAUDE.md`의 "3계층 지식 구조"가 정본이다. 탐색 순서와 계층별 역할은 그곳을 따른다.
 
 - `wiki_doc` → "왜" (정책, 의사결정)
 - `repo` + `package` → "어디" (코드 위치)

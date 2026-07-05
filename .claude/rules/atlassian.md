@@ -1,3 +1,9 @@
+---
+# Jira 연동이 필요할 때만 참조하는 설정 문서. issue-key 규칙과 spec 스킬이 직접 Read한다.
+paths:
+  - ".claude/rules/atlassian.md"
+---
+
 # Atlassian MCP 설정
 
 mcp__atlassian__ 도구 호출 시 cloudId를 아래 값으로 설정하라.

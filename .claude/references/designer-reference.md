@@ -1,7 +1,3 @@
----
-model: sonnet
----
-
 # Designer Reference
 
 designer 에이전트의 레퍼런스 문서. Bootstrap 5 컴포넌트 API와 사용 패턴을 제공한다.
