@@ -21,8 +21,10 @@ PO, 디자이너, FE, BE 등 역할에 관계없이 이 디렉토리에서 Claud
 
 1. `ontology/index.yaml`을 읽어 관련 도메인을 찾는다
 2. 해당 도메인의 abox 파일(`ontology/abox/{file}`)을 읽어 개념/관계/코드 위치를 파악한다
-3. 비즈니스 정책이 필요하면 entity의 `wiki_doc`으로 이동한다
-4. 코드가 필요하면 entity의 `repo` + `package`로 탐색한다
+3. 도메인 간 관계가 필요하면 `index.yaml`의 `cross_domain` 필드가 가리키는 파일을 참조한다
+4. 비즈니스 정책이 필요하면 entity의 `wiki_doc`으로 이동한다
+5. 코드가 필요하면 entity의 `repo` + `package`로 탐색한다
+6. 새 entity/relation 작성 시에만 `ontology/tbox.yaml`로 타입/규칙을 확인한다
 
 ### 지식 축적 (대화 중 발견한 것을 놓치지 않기)
 

@@ -48,7 +48,7 @@ allowed-tools:
 Arguments:
 - 인자 없음: 이슈 키는 브랜치에서 파싱, 메시지는 변경 내용에서 자동 생성
 - ARGS[0]만: 커밋 메시지로 사용. 이슈 키는 브랜치에서 파싱
-- ARGS[0] + ARGS[1]: ARGS[0]은 이슈 키 (`^[A-Z]+-[0-9]+$` 매칭 필수, 불일치 시 에러), ARGS[1]은 커밋 메시지
+- ARGS[0] + ARGS[1]: ARGS[0]은 이슈 키 (`.claude/config.json` → `issueKey.pattern` 매칭 필수, 불일치 시 에러), ARGS[1]은 커밋 메시지
 - `--target <경로>`: 작업 대상 디렉토리 (optional). CWD 기준 상대 경로.
   - 예: `--target projects/my-api/worktrees/PROJ-123`
   - 예: `--target worktrees/refactor/skill-project-flag`
@@ -63,17 +63,11 @@ Arguments:
 - Git 저장소인지 확인: `git -C ${WORK_DIR} rev-parse --is-inside-work-tree`
 - 커밋할 변경사항이 있는지 확인 (없으면: "커밋할 변경사항이 없습니다.")
 - 커밋 전에 lint와 test를 실행한다:
-  - 프로젝트 타입 감지 (빌드/설정 파일 기준):
-    | 파일 | 린트 | 테스트 |
-    |------|------|--------|
-    | `build.gradle.kts` / `build.gradle` | `./gradlew ktlintFormat` | `./gradlew test` |
-    | `package.json` | `bun run lint --fix` 또는 `npm run lint -- --fix` | `bun test` 또는 `npm test` |
-    | `pyproject.toml` / `setup.py` | `ruff format .` | `pytest --tb=short` |
+  - 프로젝트 타입 감지 기준과 lint/test 명령은 `.claude/config.json` → `projectTypes`를 참조한다.
   - 도구 존재 확인 (`which` / `test -x`) 후 실행. 도구가 없으면 해당 단계를 건너뛴다.
-  - Node.js: `which bun` → 있으면 bun, 없으면 npm 사용.
   - Lint 포맷팅 변경은 커밋에 포함.
   - Test 실패 시 커밋을 중단하고 사용자에게 보고.
-  - 타임아웃: lint/test Bash 명령에 `timeout: 300000` (5분) 파라미터를 설정한다. 초과 시 해당 단계를 건너뛰고 사용자에게 보고.
+  - 타임아웃: lint/test Bash 명령의 `timeout` 파라미터에 `.claude/config.json` → `timeouts` 값을 설정한다. 초과 시 해당 단계를 건너뛰고 사용자에게 보고.
 
 ## 이슈 키 파싱
 

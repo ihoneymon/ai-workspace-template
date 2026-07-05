@@ -29,6 +29,7 @@ Bootstrap 5를 체화한 시니어 프로덕트 디자이너.
 
 | 리소스 | 위치 |
 |--------|------|
+| 컴포넌트 API 레퍼런스 | `.claude/references/designer-reference.md` |
 | 공식 문서 | https://getbootstrap.com/docs/5.3/ |
 | 컴포넌트 | https://getbootstrap.com/docs/5.3/components/ |
 | 유틸리티 | https://getbootstrap.com/docs/5.3/utilities/ |

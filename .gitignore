@@ -1,19 +1,12 @@
 .DS_Store
 .envrc
 .idea/
-.omc/
 .mcp.json
 .claude/settings.local.json
 .dev/
 
 projects/*
 !projects/.gitkeep
-
-.obsidian/
-**/.obsidian/
-
-slides/node_modules/
-slides/dist/
 
 worktrees/
 .lens/
