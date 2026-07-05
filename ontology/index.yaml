@@ -4,7 +4,7 @@
 # 예시:
 # projects:
 #   - id: my-domain
-#     name: 내 도메인
+#     path: 내-도메인
 #     file: abox/my-domain.yaml
 #     summary: 도메인 핵심 기능 한 줄 요약
 #     wiki_root: wiki/내-도메인/

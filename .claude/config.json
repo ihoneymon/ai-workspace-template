@@ -37,9 +37,9 @@
     },
     "nodejs": {
       "detect": ["package.json"],
-      "lint": "bun run lint --fix | npm run lint -- --fix",
-      "test": "bun test | npm test",
-      "runtimeDetect": "which bun → bun, 없으면 npm"
+      "lint": "lockfile/runtime 감지 후 bun run lint --fix, pnpm run lint --fix, yarn lint --fix, npm run lint -- --fix 중 하나 실행",
+      "test": "lockfile/runtime 감지 후 bun test, pnpm test, yarn test, npm test 중 하나 실행",
+      "runtimeDetect": "bun.lock 또는 bun.lockb + which bun → bun, pnpm-lock.yaml → pnpm, yarn.lock → yarn, package-lock.json 또는 기본값 → npm"
     },
     "python": {
       "detect": ["pyproject.toml", "setup.py"],

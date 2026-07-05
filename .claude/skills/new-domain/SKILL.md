@@ -2,7 +2,7 @@
 name: new-domain
 description: |
   새 도메인 컨텍스트를 검증 질문을 거쳐 생성합니다.
-  wiki/{도메인}/ 디렉토리와 README.md, glossary.md, architecture.md 스켈레톤을 만듭니다.
+  wiki/{도메인}/ 디렉토리와 ontology/abox/{도메인id}.yaml 스켈레톤을 만듭니다.
 model: sonnet
 disable-model-invocation: true
 argument-hint: "[도메인명]"
@@ -17,6 +17,7 @@ allowed-tools:
 # new-domain
 
 새 도메인 컨텍스트를 생성한다. 디렉토리와 문서를 만들기 전에 검증 질문으로 도메인의 목적과 배경을 명확히 한다.
+wiki와 ontology를 함께 생성하여 `CLAUDE.md`의 ontology → wiki → code 탐색 순서가 새 도메인에서도 바로 동작하게 한다.
 
 ## 수칙
 
@@ -81,6 +82,8 @@ wiki/{도메인}/
 ├── architecture.md    ← 비즈니스 정책 인덱스
 └── status.md          ← 구현 추적
 ```
+
+도메인 id는 영문 소문자와 하이픈만 사용한다. 사용자가 한글 도메인명을 입력한 경우 사람이 읽는 경로는 `wiki/{도메인}/`에 유지하되, ontology 파일명과 id는 의미가 드러나는 영문 kebab-case로 정한다. 확신할 수 없으면 사용자에게 id를 묻는다.
 
 ### 6. README.md 작성
 
@@ -167,10 +170,42 @@ wiki/{도메인}/
 - 관련 레포: {org/repo}
 ```
 
-### 10. 인덱스 업데이트
+### 10. ontology 생성
+
+`ontology/index.yaml`에 도메인 항목을 추가한다. 필드는 `ontology/tbox.yaml`의 `index_domain_fields`를 따른다.
+
+```yaml
+  - id: {domain-id}
+    path: {도메인명}
+    file: abox/{domain-id}.yaml
+    summary: {한 줄 설명}
+    wiki_root: wiki/{도메인}/
+    repos:
+      - {repo-name}
+```
+
+관련 레포가 없으면 `repos: []`로 둔다. 확인된 인프라가 없으면 `infra` 필드는 생략한다.
+
+`ontology/abox/{domain-id}.yaml`을 생성한다.
+
+```yaml
+domain:
+  id: {domain-id}
+  name: {도메인명}
+  summary: {한 줄 설명}
+  wiki_root: wiki/{도메인}/
+
+entities: []
+
+relations: []
+```
+
+아직 코드 분석을 하지 않은 초기 도메인은 entity/relation을 추정하지 않는다. 관련 레포나 코드 위치를 확인한 뒤 `/dev`, `/lens`, 코드 탐색 과정에서 후보를 제안하고 사용자 승인 후 보강한다.
+
+### 11. 인덱스 업데이트
 
 `wiki/README.md`의 도메인 테이블에 새 행을 추가한다.
 
-### 11. 완료 안내
+### 12. 완료 안내
 
-생성된 파일 목록과 ❓ 항목(있다면)을 안내한다.
+생성된 wiki 파일, ontology 파일, `ontology/index.yaml` 갱신 내용, ❓ 항목(있다면)을 안내한다.

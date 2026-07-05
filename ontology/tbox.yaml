@@ -73,6 +73,9 @@ index_domain_fields:
   - id: summary
     required: true
     description: 도메인 핵심 기능 요약
+  - id: wiki_root
+    required: true
+    description: wiki 문서 루트 경로 (wiki/{도메인}/)
   - id: repos
     required: false
     description: 관련 코드 레포 목록
