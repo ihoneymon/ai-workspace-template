@@ -33,7 +33,7 @@
 
 **금지:** `projects/` 하위 파일을 이 워크스페이스 repo에 절대 커밋하지 마세요.
 
-**스킬 우선 사용:** 커밋은 `/commit`, 워크트리는 `/worktree`, PR은 `/pull-request` 스킬을 사용하세요. git 명령어를 직접 실행하지 마세요.
+**스킬 우선 사용:** Claude Code에서는 커밋은 `/commit`, 워크트리는 `/worktree`, PR은 `/pull-request` 스킬을 사용하세요. Codex, Cursor 등 slash command를 실행하지 않는 에이전트는 해당 스킬 문서를 절차 문서로 읽고, 사전 확인·민감 파일 점검·검증·커밋/PR 규칙을 수동으로 수행합니다.
 
 **repo 혼동 금지:** 같은 세션에서 워크스페이스와 프로젝트를 오갈 때, commit/merge/push 전에 "지금 어느 repo인가?" 확인하세요. 워크스페이스 규칙(PR 필수)과 프로젝트 규칙(프로젝트별 CLAUDE.md)을 혼동하지 마세요.
 
