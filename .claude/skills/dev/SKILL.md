@@ -69,7 +69,7 @@ ARGS[0]이 없고 `--status`도 `--resume`도 없으면 다음을 응답:
 | product-owner | PRODUCT | PRD 작성 + 인수 검증 | "뭘 만들지" / "비즈니스 의도대로 됐나" | sonnet |
 | architect | PLANNING | 설계 | "어떻게 만들지" / "구조적 일관성" | sonnet |
 | design-critic | REVIEW | 설계 비판 검토 | "이 가정이 맞나" / "더 단순하게 안 되나" | opus |
-| coder | EXECUTION | 구현 + 수정 | "만든다" | inherit |
+| coder | EXECUTION | 구현 + 수정 | "만든다" | sonnet |
 | qa-manager | REVIEW | 코드 리뷰 + 스펙 충족 검증 | "스펙대로 됐나" | sonnet |
 | security-auditor | REVIEW | 정책/보안/허점 감사 | "뭘 놓쳤나" | sonnet |
 | researcher | ANALYSIS | 코드베이스 조사 + 기술 비교 | "이해한다" (독립 호출 전용) | sonnet |
