@@ -183,6 +183,7 @@ ai-workspace/
 | `/lens` | 코드 속 비즈니스 정책 탐지 → PO/PD 보고서 |
 | `/humanizer` | AI 글쓰기 패턴 감지 및 교정 |
 | `/agent-browser` | 브라우저 자동화 (탐색, 폼 입력, 스크린샷) |
+| `/cmux-browser` | 현재 cmux 워크스페이스의 측면 pane에서 브라우저 자동화 |
 
 ---
 
