@@ -113,6 +113,13 @@ console <list|clear>
 errors <list|clear>
 ```
 
+### 스크린캐스트/저수준 입력
+```
+screencast <start|stop>
+input <mouse|keyboard|touch> [args...]
+input_mouse | input_keyboard | input_touch
+```
+
 ### 뷰포트/에뮬레이션
 ```
 viewport <width> <height> | reset
@@ -143,9 +150,9 @@ Chrome/CDP 전용 기능이라 그렇다. `click`/`fill`/`press`/`scroll`/`wait`
 
 | 명령 | 설명 |
 |------|------|
-| `cmux tree --all --json` | 전체 window/workspace/pane/surface 트리(읽기 전용). 브라우저 surface 탐색에 사용 |
+| `cmux --json tree --workspace <ref>` | 지정한 워크스페이스의 window/workspace/pane/surface 트리(읽기 전용). 브라우저 surface 탐색에 사용 |
 | `cmux list-pane-surfaces --workspace <ref> --json` | 특정 워크스페이스의 surface만 조회 |
-| `cmux close-surface --surface <ref>` | surface(pane) 닫기. **반환 ref가 요청 ref와 다를 수 있으니 `tree`로 재확인** |
+| `cmux close-surface --workspace <workspace-ref> --surface <ref>` | surface(pane) 닫기. **반환 ref가 요청 ref와 다를 수 있으니 같은 워크스페이스의 `tree`로 재확인** |
 | `cmux new-pane --type browser --direction right --url <url> --focus false` | 오른쪽 브라우저 pane 생성 |
 
 ## agent-browser 대응 참고
@@ -158,7 +165,7 @@ Chrome/CDP 전용 기능이라 그렇다. `click`/`fill`/`press`/`scroll`/`wait`
 | `agent-browser fill @e1 "x"` | `cmux browser --surface <s> fill e1 --text "x"` |
 | `agent-browser get url` | `cmux browser --surface <s> get url` |
 | `agent-browser screenshot f.png` | `cmux browser --surface <s> screenshot --out f.png` |
-| `agent-browser close` | `cmux close-surface --surface <s>` |
-| (해당 없음) | `cmux tree --all --json`로 surface 탐색 |
+| `agent-browser close` | `cmux close-surface --workspace <workspace-ref> --surface <s>` |
+| (해당 없음) | `cmux --json tree --workspace <ref>`로 현재 워크스페이스의 surface 탐색 |
 
 핵심 차이: agent-browser는 세션당 단일 암묵 브라우저, cmux는 **surface 핸들로 여러 pane을 명시 지정**한다.
