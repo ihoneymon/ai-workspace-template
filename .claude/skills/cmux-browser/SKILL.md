@@ -101,7 +101,7 @@ cmux browser --surface "$SURFACE" get text "h1"
 cmux browser --surface "$SURFACE" get url
 cmux browser --surface "$SURFACE" is visible "#login"
 cmux browser --surface "$SURFACE" find role button --name "Submit"
-cmux browser --surface "$SURFACE" screenshot --out /tmp/page.png
+cmux browser --surface "$SURFACE" screenshot --out "$SCRATCHPAD/page.png"   # 세션 스크래치패드 사용, /tmp 금지
 ```
 
 ## 5. 기존 브라우저 surface 찾기 (포커스 변경 없이)
@@ -172,7 +172,14 @@ cmux browser --surface "$SURFACE" get html body
 
 ## 공식 스킬 참고
 
-manaflow-ai/cmux 저장소에 유지관리되는 공식 `cmux-browser` 스킬과 설치기가 있다. 이 워크스페이스 사본 대신 공식본으로 갱신하려면:
+manaflow-ai/cmux 저장소에 유지관리되는 공식 `cmux-browser` 스킬과 설치기가 있다. 공식본을 참고하거나 최신 CLI 변경을 확인할 때 유용하다.
+
+```bash
+# 공식 스킬 문서만 열람 (설치 없음)
+curl -fsSL https://raw.githubusercontent.com/manaflow-ai/cmux/main/skills/cmux-browser/SKILL.md
+```
+
+공식본을 **설치**하려면 아래를 쓰되, `--global`은 사용자 전역 스킬 디렉토리에 **별도 사본**을 만든다. 이 워크스페이스 사본(`.claude/skills/cmux-browser/`)은 그대로 남아 같은 이름의 스킬이 두 범위에 공존하게 되므로, 전역본으로 대체할 의도라면 설치 후 이 디렉토리를 직접 제거해야 한다.
 
 ```bash
 npx --yes skills@1.5.23 add manaflow-ai/cmux --global --yes --skill cmux-browser --agent claude-code codex --copy

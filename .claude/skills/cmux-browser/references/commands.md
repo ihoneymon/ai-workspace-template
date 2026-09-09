@@ -1,6 +1,6 @@
 # cmux browser 전체 명령 레퍼런스
 
-`cmux browser --help` 출력(0.64.22 기준)을 그대로 옮긴 것이다. 실제 값은 실행 중인 바이너리에서 `cmux browser --help`로 재확인하라.
+`cmux browser --help` 출력(0.64.22 기준)의 하위명령과 플래그를 범주별로 재배열한 것이다. 시그니처 자체는 help 출력 그대로이나 순서는 다르며, 일부 항목에 실측 주석을 덧붙였다. 실제 값은 실행 중인 바이너리에서 `cmux browser --help`로 재확인하라.
 
 ## 대상(surface) 지정
 
@@ -24,7 +24,7 @@ cmux browser [--surface <id|ref|index> | <surface>] <subcommand> [args]
 공통 옵션: `[--workspace <id|ref|index>] [--window <id|ref|index>] [--focus <true|false>] [--profile <name|uuid>]`
 `--focus`는 기본 false. workspace 생략 시 `$CMUX_WORKSPACE_ID` 사용.
 
-전역 `--json`(예: `cmux --json new-pane …`, `cmux --json browser open-split …`)으로 구조화 출력을 얻는다. `--json`은 하위명령이 아니라 `cmux` 바로 뒤에 온다.
+`--json`으로 구조화 출력을 얻는다. 앞(`cmux --json new-pane …`)과 뒤(`cmux new-pane … --json`) 어느 위치든 동작하지만, 문서와 스크립트에서는 **`cmux` 바로 뒤에 두는 형태로 통일**한다. 하위명령 플래그와 섞이지 않아 읽기 쉽다.
 
 ## surface 조작 (surface 필요)
 
@@ -151,7 +151,7 @@ Chrome/CDP 전용 기능이라 그렇다. `click`/`fill`/`press`/`scroll`/`wait`
 | 명령 | 설명 |
 |------|------|
 | `cmux --json tree --workspace <ref>` | 지정한 워크스페이스의 window/workspace/pane/surface 트리(읽기 전용). 브라우저 surface 탐색에 사용 |
-| `cmux list-pane-surfaces --workspace <ref> --json` | 특정 워크스페이스의 surface만 조회 |
+| `cmux --json list-pane-surfaces --workspace <ref>` | 특정 워크스페이스의 surface만 조회 |
 | `cmux close-surface --workspace <workspace-ref> --surface <ref>` | surface(pane) 닫기. **반환 ref가 요청 ref와 다를 수 있으니 같은 워크스페이스의 `tree`로 재확인** |
 | `cmux new-pane --type browser --direction right --url <url> --focus false` | 오른쪽 브라우저 pane 생성 |
 
