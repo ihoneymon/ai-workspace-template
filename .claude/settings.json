@@ -11,6 +11,9 @@
       "Bash(agent-browser *)",
       "Bash(npx agent-browser *)",
 
+      "Bash(cmux *)",
+      "Bash(jq *)",
+
       "Bash(git *)",
       "Bash(git -C *)",
       "Bash(GH_HOST=* *)",
@@ -36,6 +39,7 @@
       "Skill(sync-projects)",
       "Skill(dev)",
       "Skill(agent-browser)",
+      "Skill(cmux-browser)",
       "Skill(spec)",
 
       "WebSearch",
