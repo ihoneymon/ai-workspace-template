@@ -3,6 +3,25 @@
     "pattern": "feature/{username}/{issueKey}",
     "usernameFrom": "git-email-local"
   },
+  "pullRequest": {
+    "labels": {
+      "default": [],
+      "branchPattern": {
+        "feature/": ["신규기능"],
+        "feat/": ["신규기능"],
+        "improve/": ["기능변경/개선"],
+        "refactor/": ["기능변경/개선"],
+        "chore/": ["기능변경/개선"],
+        "docs/": ["기능변경/개선"],
+        "codex/": ["기능변경/개선"],
+        "release/": ["출시"],
+        "deploy/": ["출시"],
+        "fix/": ["오류수정"],
+        "bugfix/": ["오류수정"],
+        "hotfix/": ["오류수정"]
+      }
+    }
+  },
   "issueKey": {
     "pattern": "^[A-Z]+-[0-9]+$",
     "description": "대문자 영문 1자 이상 + '-' + 숫자 1자 이상 (e.g., JIRA-123, AFS-6)"

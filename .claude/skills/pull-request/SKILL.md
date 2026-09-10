@@ -103,11 +103,12 @@ config.json 예시:
 {
   "pullRequest": {
     "labels": {
-      "default": ["backend"],
+      "default": [],
       "branchPattern": {
-        "feature/": ["enhancement"],
-        "fix/": ["bug"],
-        "hotfix/": ["bug", "urgent"]
+        "feature/": ["신규기능"],
+        "improve/": ["기능변경/개선"],
+        "release/": ["출시"],
+        "fix/": ["오류수정"]
       }
     }
   }
